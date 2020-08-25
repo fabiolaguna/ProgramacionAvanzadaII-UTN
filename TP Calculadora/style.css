@@ -1,0 +1,30 @@
+.calculator {
+    background-color: dimgray;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    width: 340px;
+    height: 500px;
+    border-radius: 3px;
+}
+
+.calculator td button {
+    display: block;
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 2px;
+}
+
+#result {
+    display: block;
+    background-color: #fff;
+    width: 290px;
+    height: 100px;
+    margin-bottom: 40px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 3px;
+}
