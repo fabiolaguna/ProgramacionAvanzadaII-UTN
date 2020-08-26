@@ -1,0 +1,46 @@
+* {
+    background-color: lightsteelblue;
+}
+
+.form {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: midnightblue;
+}
+
+form {
+    font-size: 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+input {
+    background-color: lightgray;
+    margin-top: 3px;
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+    width: 120px;
+    height: 60px;
+    margin-top: 40px;
+    font-size: larger;
+    font-style: normal;
+    font-weight: bolder;
+    background-color: royalblue;
+}
