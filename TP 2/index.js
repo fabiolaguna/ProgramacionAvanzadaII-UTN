@@ -1,31 +1,23 @@
-/*function insertRow(){
-    const table = document.getElementsByClassName("myTable");
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
-    const text = document.createTextNode("new row");
-    cell.appendChild(text);
-    row.appendChild(cell);
-    table[0].appendChild(row);
-}
-
-function deleteRow(){
-    const table = document.getElementsByClassName("myTable");
-    const lastRow = table[0].lastChild;
-    table[0].removeChild(lastRow);
+/*function highlight(){
+    const words = document.getElementsByClassName("myClass");
+    
+    for (var i=0 ; i<words.length ; i++){
+        const highlight = document.createElement("mark");
+        const text = words[i].textContent;
+        highlight.appendChild(document.createTextNode(text));
+        words[i].innerHTML = "";
+        words[i].appendChild(highlight);
+    }
 }*/
 
-function insertRow(){
-    const table = document.querySelector(".myTable");
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
-    const text = document.createTextNode("new row");
-    cell.appendChild(text);
-    row.appendChild(cell);
-    table.appendChild(row);
-}
-
-function deleteRow(){
-    const table = document.querySelector(".myTable");
-    const lastRow = table.lastChild;
-    table.removeChild(lastRow);
+function highlight(){
+    const words = document.querySelectorAll(".myClass");
+    
+    for (var i=0 ; i<words.length ; i++){
+        const highlight = document.createElement("mark");
+        const text = words[i].textContent;
+        highlight.appendChild(document.createTextNode(text));
+        words[i].innerHTML = "";
+        words[i].appendChild(highlight);
+    }
 }

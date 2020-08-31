@@ -2,23 +2,14 @@
 <html lang="en">
 <head>
     <title>Tp2</title>
-    <style>
-        table, th, td {
-            border: ​1px​ solid black;
-        }
-    </style>
 
     <script src="index.js"></script>
 </head>
 <body>
-    <input type="button" onclick="insertRow()" value="Insert row">
-    <input type="button" onclick="deleteRow()" value="Delete row">
+    <input type="button" onclick="highlight()" value="Highlight words">
     <br><br>
-    <table style="width:100%" class="myTable">
-        <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-        </tr>
-    </table>
+    <p>
+        Lorem <span class="myClass">ipsum</span> dolor sit <span class="myClass">amet</span>, consectetur adipiscing elit, sed do eiusmod tempor <span class="myClass">incididunt</span> ut labore et dolore <span class="myClass">magna</span> aliqua.
+    </p>
 </body>
 </html>
