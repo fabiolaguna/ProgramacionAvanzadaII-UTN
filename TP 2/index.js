@@ -1,11 +1,11 @@
 window.onload = () => execute();
 
 /*function execute(){
-    const text = document.getElementById("myId");
-    text.appendChild(document.createTextNode("Hello world"));
+    const text = document.getElementsByClassName("test");
+    text[0].appendChild(document.createTextNode("Hello world"));
 }*/
 
 function execute(){
-    const text = document.querySelector("#myId");
+    const text = document.querySelector(".test");
     text.appendChild(document.createTextNode("Hello world"));
 }
