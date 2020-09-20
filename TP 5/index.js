@@ -25,8 +25,8 @@ function get(url){
     });
 }
 
-window.onload = function(){
-    totalPages(`${url}/Total`)
+window.onload = async function(){
+    await totalPages(`${url}/Total`)
     .then((response) => {
         var i = 0;
         while(i < (response/usersPerPage)){
@@ -52,16 +52,16 @@ function addEventToButton(i, button){
     return button;
 }
 
-function totalPages(url){
-   return get(url);    
+async function totalPages(url){
+   return await get(url);    
 }
 
-function showUsers(i){
+async function showUsers(i){
     var to = usersPerPage * (i+1);
     var from = to - (usersPerPage-1);
     usersTable.innerHTML = "";
 
-    get(`${url}/${from}/${to}`)
+    await get(`${url}/${from}/${to}`)
     .then(response => {
         for(user of response){
             var tr = document.createElement("tr");
