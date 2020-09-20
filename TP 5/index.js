@@ -1,28 +1,9 @@
-class User {
-    constructor(userId, firstName, lastName, email, gender, lastConnectedAddress){
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-        this.lastConnectedAddress = lastConnectedAddress;
-    }
-
-    toString(){
-        return "user id: " + this.userId + "\n" +
-               "firstName: " + this.firstName + "\n" +
-               "lastName: " + this.lastName + "\n" +
-               "email: " + this.email + "\n" + 
-               "gender: " + this.gender + "\n" + 
-               "lastConnectedAddress: " + this.lastConnectedAddress + "\n";
-    }
-}
-
 const url = "https://utn-avanzanda2-tp5.herokuapp.com/api/user";
-var usersSection = document.getElementById("users");
 var usersTable = document.querySelector("#usersTable");
+var buttons = document.querySelector("#buttons");
+var usersPerPage = 17;
 
-function loadUsers(url){
+function get(url){
     return new Promise(function(resolve, rejecte){
         var request = new XMLHttpRequest();
         request.open("GET", url);
@@ -45,28 +26,61 @@ function loadUsers(url){
 }
 
 window.onload = function(){
-    loadUsers(url)
+    totalPages(`${url}/Total`)
     .then((response) => {
-        for (element of response){
-            let tr = document.createElement("tr");
+        var i = 0;
+        while(i < (response/usersPerPage)){
+            var button = document.createElement("button");
+            button.id = "button" + i;
+            button.className = "btn";
+            button.append(document.createTextNode(i+1));
+            buttons.append(addEventToButton(i, button));
 
-            for (attribute in element) {
-                let td = document.createElement("td");
-
-                if (attribute != "lastConnectedAddress"){
-                    td.setAttribute("style", "border-top: 1px solid black; border-right: 1px solid black");
-                } else {
-                    td.setAttribute("style", "border-top: 1px solid black"); 
-                }
-
-                td.appendChild(document.createTextNode(element[attribute]));
-                tr.appendChild(td);
-                usersTable.appendChild(tr);
-            }
+            i++;
         }
     })
     .catch((error) => {
         console.log(Error(error));
     })
+
+    showUsers(0); //Para que se muestren los 10 primeros desde el principio
 }
 
+function addEventToButton(i, button){
+    button.addEventListener("click", () => showUsers(i), false);
+
+    return button;
+}
+
+function totalPages(url){
+   return get(url);    
+}
+
+function showUsers(i){
+    var to = usersPerPage * (i+1);
+    var from = to - (usersPerPage-1);
+    usersTable.innerHTML = "";
+
+    get(`${url}/${from}/${to}`)
+    .then(response => {
+        for(user of response){
+            var tr = document.createElement("tr");
+            for(attribute in user){
+                var td = document.createElement("td");
+
+                if (attribute != "lastConnectedAddress"){
+                    td.setAttribute("style", "border-top: 1px solid black; border-right: 1px solid black; text-align-last: center;");
+                } else {
+                    td.setAttribute("style", "border-top: 1px solid black; text-align-last: center;"); 
+                }
+
+                td.append(document.createTextNode(user[attribute]));
+                tr.append(td);
+            }
+            usersTable.append(tr);
+        }
+    })
+    .catch(reject => {
+            console.log(Error(reject))
+    })
+}
