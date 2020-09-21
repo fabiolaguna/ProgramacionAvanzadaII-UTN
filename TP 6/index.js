@@ -2,7 +2,14 @@ const url = "https://utn-avanzada2-tp6.herokuapp.com/api";
 let response = [];
 const tableEmployees = document.querySelector("#employees");
 const buttons = document.querySelector("#buttons");
+let form = document.querySelector('#addEmployee');
+const firstName = document.querySelector('#firstName');
+const lastName = document.querySelector('#lastName');
+const email = document.querySelector('#email');
+const companyId = document.querySelector('#companyId');
 const employeesPerPage = 20;
+
+window.onload = employeesAndCompanies();
 
 function get(url){
     return new Promise(function(resolve, rejecte){
@@ -71,8 +78,6 @@ function deleteApi(url){
     });
 }
 
-window.onload = employeesAndCompanies();
-
 async function getEmployees(){
     try {
         return await get(`${url}/Employee`);
@@ -109,12 +114,11 @@ async function postEmployee(){
 async function deleteEmployee(employee, i){
     try {
         await deleteApi(`${url}/Employee/${employee.employeeId}`);
+        response.splice(response.indexOf(employee), 1);
+        tableEmployees.textContent = "";
     } catch(error){
         console.log(Error(error));
     }
-
-    response.splice(response.indexOf(employee), 1);
-    tableEmployees.textContent = "";
 
     showEmployees(i);
 }
