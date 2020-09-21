@@ -2,12 +2,23 @@ const url = "https://utn-avanzada2-tp6.herokuapp.com/api";
 let response = [];
 const tableEmployees = document.querySelector("#employees");
 const buttons = document.querySelector("#buttons");
-let form = document.querySelector('#addEmployee');
+const employeeForm = document.querySelector('#addEmployee');
 const firstName = document.querySelector('#firstName');
 const lastName = document.querySelector('#lastName');
 const email = document.querySelector('#email');
 const companyId = document.querySelector('#companyId');
 const employeesPerPage = 20;
+
+employeeForm.onsubmit = function(){
+    let employee = {
+        companyId: parseInt(companyId.value),
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value
+    }
+
+    postEmployee(employee);
+}
 
 window.onload = employeesAndCompanies();
 
@@ -36,8 +47,7 @@ function get(url){
 function post(url, employee){
     return new Promise(function(resolve, rejecte){
         var request = new XMLHttpRequest();
-        request.open("POST", url);
-        request.responseType = "json";
+        request.open("POST", url, false);
         request.setRequestHeader('Content-Type', 'application/json');
 
         request.onload = function(){
@@ -94,21 +104,16 @@ async function getCompanies(){
     } 
 }
 
-async function postEmployee(){
-
-    let employee = {
-        employeeId: 1,
-        companyId: 3,
-        firstName: "harry",
-        lastName: "elsucio",
-        email: "harrypotter@gmail.com"
-    }
-
+async function postEmployee(employee){
     try {
         await post(`${url}/Employee`, employee);
+        employee.employeeId = (response[(response.length - 1)].employeeId + 1);
+        response.push(employee);
     } catch(error){
         console.log(Error(error));
     }
+
+    showEmployees(0);
 }
 
 async function deleteEmployee(employee, i){
