@@ -1,0 +1,27 @@
+<h2 style="text-align: center;">Clients list</h2>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <th>{{ client.clientId }}</th>
+            <td>{{ client.firstName }}</td>
+            <td>{{ client.lastName }}</td>
+            <td>{{ client.dni }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.address }}</td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="deleteClient(client)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
