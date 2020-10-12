@@ -10,12 +10,19 @@ export class ClientListComponentComponent implements OnInit {
   @Input()
   clients: Array<Client> = new Array<Client>();
 
+  @Output()
+  editClientEvent = new EventEmitter<Client>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  deleteClient(client){
+  deleteClient(client: Client){
     this.clients.splice(this.clients.indexOf(client), 1);
+  }
+
+  modifyClient(client: Client){
+    this.editClientEvent.emit(client);
   }
 }

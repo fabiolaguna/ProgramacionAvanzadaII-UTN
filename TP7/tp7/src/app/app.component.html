@@ -1,5 +1,7 @@
 <div class="container">
-  <app-client-add-component [clients]="clients"></app-client-add-component>
+  <app-client-add-component [clients]="clients" [client]="client" [editCondition]="editCondition"
+    (editFinishedEvent)="editClientFinished($event)"></app-client-add-component>
   <div class="p-3"></div>
-  <app-client-list-component [clients]="clients"></app-client-list-component>
+  <app-client-list-component [clients]="clients" *ngIf="editCondition==false"
+    (editClientEvent)="editSelectedClient($event)"></app-client-list-component>
 </div>

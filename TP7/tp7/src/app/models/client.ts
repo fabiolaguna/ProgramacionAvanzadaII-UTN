@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+
 export class Client {
     clientId: number;
     firstName: string;

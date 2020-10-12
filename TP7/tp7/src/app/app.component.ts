@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Client } from './models/client';
 
 @Component({
@@ -9,4 +9,15 @@ import { Client } from './models/client';
 export class AppComponent {
   title = 'tp7';
   clients = new Array<Client>();
+  client: Client;
+  editCondition: boolean = false;
+
+  editSelectedClient(clientToEdit : Client){
+      this.client = clientToEdit;
+      this.editCondition = true;
+  }
+
+  editClientFinished(editFinished: boolean){
+    this.editCondition = editFinished;
+  }
 }
